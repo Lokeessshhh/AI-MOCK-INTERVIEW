@@ -4,12 +4,16 @@ import React, { useEffect , useState } from 'react'
 import  Image  from 'next/image'
 import { Button } from '../../../../../../components/ui/button'
 import { Mic } from 'lucide-react'
-import useSpeechToText from 'react-hook-speech-to-text'
 import { toast } from 'sonner'
 import { chatSession } from '../../../../../../utils/GeminiAIModel'
 import { db } from '../../../../../../utils/db'
 import { useUser } from '@clerk/nextjs'
 import moment from 'moment';
+import dynamic from 'next/dynamic';
+
+const useSpeechToText = dynamic(() => import('react-hook-speech-to-text'), {
+    ssr: false
+});
 
 
 function RecordAnswerSection({MockInterviewQuestion,ActiveQuestionIndex,InterviewData}) {
